@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">look_up_information_android</string>
+    <string name="app_name">Look-up Student</string>
+    <string name="login_name">Đăng nhập</string>
 </resources>
