@@ -6,10 +6,4 @@
 
     <item android:drawable="@android:color/white"/>
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/logo_254x254"/>
-    </item>
-
 </layer-list>

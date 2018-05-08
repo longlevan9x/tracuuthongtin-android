@@ -12,4 +12,8 @@
         <item name="android:windowBackground">@layout/splash_screen</item>
     </style>
 
+    <style name="White.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@layout/theme_white_noactionbar</item>
+    </style>
+
 </resources>

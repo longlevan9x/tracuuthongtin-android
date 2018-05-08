@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login.LoginActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingTop="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:scaleType="centerInside"
+                android:src="@drawable/banner_name_only"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:textCursorDrawable="@drawable/cursor"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/textColorHint"
+                android:hint="@string/id_student"
+                android:background="@drawable/edittext_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
+
+            <EditText
+                android:textCursorDrawable="@drawable/cursor"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/textColorHint"
+                android:hint="@string/password"
+                android:background="@drawable/edittext_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
