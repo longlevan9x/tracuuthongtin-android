@@ -6,4 +6,10 @@
 
     <color name="textColorHint">#578ec1</color>
     <color name="sky">#4DB6AC</color>
+
+    <color name="_3b">#3b3b3b</color>
+    <color name="_44">#444444</color>
+    <color name="_4c">#4c4c4c</color>
+    <color name="_5c">#5c5c5c</color>
+    <color name="_55">#555555</color>
 </resources>

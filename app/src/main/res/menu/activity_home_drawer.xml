@@ -3,30 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/icon_group1" android:checkableBehavior="single">
         <item
+            android:icon="@drawable/info_64"
             android:id="@+id/nav_info"
             android:title="@string/nav_item_info" />
         <item
+            android:icon="@drawable/exam_64"
             android:id="@+id/nav_mark"
             android:title="@string/nav_item_mark" />
         <item
+            android:icon="@drawable/schedule_64"
             android:id="@+id/nav_schedule"
             android:title="@string/nav_item_schedule" />
         <item
+            android:icon="@drawable/pass_fail_64"
             android:id="@+id/nav_schedule_exam"
             android:title="@string/nav_item_schedule_exam" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Send" />
-        </menu>
-    </item>
+
+    <group android:id="@+id/icon_group2" android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/shutdown_64"
+            android:id="@+id/nav_logout"
+            android:title="@string/nav_item_logout" />
+    </group>
 
 </menu>

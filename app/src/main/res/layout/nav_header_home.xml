@@ -5,12 +5,11 @@
     android:layout_height="@dimen/nav_header_height"
     android:background="@drawable/side_nav_bar"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/general_margin"
-    android:paddingBottom="@dimen/general_margin"
-    android:paddingTop="@dimen/general_margin"
+    android:padding="@dimen/general_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:layout_marginBottom="@dimen/general_margin"
         android:src="@drawable/banner_name_only_white"
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_user_header"
+            android:id="@+id/img_student"
             android:layout_width="@dimen/info_size"
             android:layout_height="@dimen/info_size"
             android:src="@drawable/gtthuong"/>
@@ -38,19 +37,17 @@
                 android:layout_marginBottom="@dimen/nav_header_vertical_spacing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/drawer_text_size"
                 android:fontFamily="monospace"
-                android:textStyle="bold"
                 android:text="Giang Thị Thu Hương"
+                android:textSize="@dimen/drawer_text_size"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
-                android:id="@+id/txt_username_header"
+                android:id="@+id/txt_IDStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif-monospace"
-                android:textStyle="bold"
-                android:textSize="@dimen/drawer_text_size"
+                android:textColor="@android:color/white"
                 android:text="14102100054" />
 
         </LinearLayout>

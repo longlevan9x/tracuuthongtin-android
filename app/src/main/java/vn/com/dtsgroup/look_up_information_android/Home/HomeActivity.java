@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity
     private void init() {
         initToolbar();
         initDrawer();
+        initNavigationView();
     }
 
     @Override
@@ -79,22 +80,35 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        boolean val = false;
 
-        if (id == R.id.nav_info) {
-            // Handle the camera action
-        } else if (id == R.id.nav_mark) {
+        switch (id){
+            case R.id.nav_info:
+                val = true;
+                break;
 
-        } else if (id == R.id.nav_schedule) {
+            case R.id.nav_mark:
+                val = true;
 
-        } else if (id == R.id.nav_schedule_exam) {
+                break;
 
-        } else if (id == R.id.nav_share) {
+            case R.id.nav_schedule:
+                val = true;
 
-        } else if (id == R.id.nav_send) {
+                break;
 
+            case R.id.nav_schedule_exam:
+                val = true;
+
+                break;
+
+            case R.id.nav_logout:
+                val = true;
+
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return val;
     }
 }
