@@ -3,4 +3,12 @@
     <string name="login_name">Đăng nhập</string>
     <string name="id_student">Mã sinh viên</string>
     <string name="password">Mật khẩu</string>
+
+    <string name="nav_item_info">Thông tin</string>
+    <string name="nav_item_mark">Xem điểm</string>
+    <string name="nav_item_schedule">Lịch học</string>
+    <string name="nav_item_schedule_exam">Lịch thi</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

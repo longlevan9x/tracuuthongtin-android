@@ -1,5 +1,11 @@
 package vn.com.dtsgroup.look_up_information_android;
 
+/*******************************
+ *                             *
+ * Created by: VinhLD 20180508 *
+ *                             *
+ *******************************/
+
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;

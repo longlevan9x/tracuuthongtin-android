@@ -21,6 +21,9 @@
         <activity
             android:name=".Login.LoginActivity"
             android:theme="@style/White.NoActionBar" />
+        <activity
+            android:name=".Home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -5,4 +5,5 @@
     <color name="colorAccent">#000000</color>
 
     <color name="textColorHint">#578ec1</color>
+    <color name="sky">#4DB6AC</color>
 </resources>
