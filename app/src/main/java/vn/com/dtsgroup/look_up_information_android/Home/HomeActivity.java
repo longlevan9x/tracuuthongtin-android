@@ -1,24 +1,29 @@
 package vn.com.dtsgroup.look_up_information_android.Home;
 
-/*******************************
- *                             *
- * Created by: VinhLD 20180509 *
- *                             *
- *******************************/
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
+import vn.com.dtsgroup.look_up_information_android.Adapter.ViewPagerAdapter;
+import vn.com.dtsgroup.look_up_information_android.Fragment.InfoFragment;
+import vn.com.dtsgroup.look_up_information_android.Fragment.MarkFragment;
 import vn.com.dtsgroup.look_up_information_android.R;
-import vn.com.dtsgroup.look_up_information_android.Module;
+import vn.com.dtsgroup.look_up_information_android.Init.Module;
 
+/*******************************
+ *                             *
+ * Created by: VinhLD 20180509 *
+ *                             *
+ *******************************/
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +31,10 @@ public class HomeActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
+
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private ViewPagerAdapter viewPagerAdapter;
 
     private void initToolbar(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -47,10 +56,50 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void initViewPager(){
+        viewPager = findViewById(R.id.viewPagerHome);
+        tabLayout = findViewById(R.id.tabLayoutHome);
+        newViewPagerAdapter();
+    }
+    private void newViewPagerAdapter(){
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), HomeActivity.this);
+    }
+
+    private void clearViews(){
+        viewPager.removeAllViews();
+        tabLayout.removeAllTabs();
+        newViewPagerAdapter();
+    }
+    private void createViews(){
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void createStudentInfomation(){
+//        clearViews();
+        newViewPagerAdapter();
+
+        viewPagerAdapter.addFragmentPager(new InfoFragment(), "");
+
+        createViews();
+        tabLayout.setVisibility(View.GONE);
+    }
+
+    private void createStudentMark(){
+//        clearViews();
+        newViewPagerAdapter();
+        viewPagerAdapter.addFragmentPager(new MarkFragment(), "");
+
+        createViews();
+        tabLayout.setVisibility(View.GONE);
+    }
+
     private void init() {
         initToolbar();
         initDrawer();
         initNavigationView();
+        initViewPager();
+        createStudentInfomation();
     }
 
     @Override
@@ -80,35 +129,30 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        boolean val = false;
 
         switch (id){
             case R.id.nav_info:
-                val = true;
+                createStudentInfomation();
                 break;
 
             case R.id.nav_mark:
-                val = true;
-
+                createStudentMark();
                 break;
 
             case R.id.nav_schedule:
-                val = true;
 
                 break;
 
             case R.id.nav_schedule_exam:
-                val = true;
 
                 break;
 
             case R.id.nav_logout:
-                val = true;
 
                 break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
-        return val;
+        return true;
     }
 }

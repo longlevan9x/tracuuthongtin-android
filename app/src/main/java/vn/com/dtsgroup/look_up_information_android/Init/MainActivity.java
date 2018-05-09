@@ -1,10 +1,4 @@
-package vn.com.dtsgroup.look_up_information_android;
-
-/*******************************
- *                             *
- * Created by: VinhLD 20180508 *
- *                             *
- *******************************/
+package vn.com.dtsgroup.look_up_information_android.Init;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -13,6 +7,12 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import vn.com.dtsgroup.look_up_information_android.Login.LoginActivity;
+
+/*******************************
+ *                             *
+ * Created by: VinhLD 20180509 *
+ *                             *
+ *******************************/
 
 public class MainActivity extends AppCompatActivity {
 

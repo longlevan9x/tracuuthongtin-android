@@ -1,4 +1,4 @@
-package vn.com.dtsgroup.look_up_information_android;
+package vn.com.dtsgroup.look_up_information_android.Init;
 
 /*******************************
  *                             *

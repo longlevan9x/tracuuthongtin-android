@@ -1,17 +1,17 @@
 package vn.com.dtsgroup.look_up_information_android.Login;
 
-/*******************************
- *                             *
- * Created by: VinhLD 20180508 *
- *                             *
- *******************************/
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import vn.com.dtsgroup.look_up_information_android.Home.HomeActivity;
 import vn.com.dtsgroup.look_up_information_android.R;
+
+/*******************************
+ *                             *
+ * Created by: VinhLD 20180508 *
+ *                             *
+ *******************************/
 
 public class LoginActivity extends AppCompatActivity {
 
