@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Look-up Student</string>
     <string name="login_name">Đăng nhập</string>
+    <string name="login_noti">Nhập mã sinh viên của bạn để đăng nhập</string>
     <string name="id_student">Mã sinh viên</string>
     <string name="password">Mật khẩu</string>
 

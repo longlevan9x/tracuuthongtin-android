@@ -11,15 +11,15 @@ import vn.com.dtsgroup.look_up_information_android.R;
 
 /*******************************
  *                             *
- * Created by: VinhLD 20180509 *
+ * Created by: VinhLD 20180510 *
  *                             *
  *******************************/
 
-public class MarkFragment extends Fragment {
+public class ScheduleFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mark, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         return view;
     }

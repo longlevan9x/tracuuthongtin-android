@@ -1,10 +1,10 @@
-package vn.com.dtsgroup.look_up_information_android.Login;
+package vn.com.dtsgroup.look_up_information_android.Activities.Login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import vn.com.dtsgroup.look_up_information_android.Home.HomeActivity;
+import vn.com.dtsgroup.look_up_information_android.Activities.Home.HomeActivity;
 import vn.com.dtsgroup.look_up_information_android.R;
 
 /*******************************

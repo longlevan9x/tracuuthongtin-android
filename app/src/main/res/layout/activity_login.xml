@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login.LoginActivity">
+    tools:context=".Activities.Login.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,12 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
 
-            <EditText
-                android:textCursorDrawable="@drawable/cursor"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/textColorHint"
-                android:hint="@string/password"
-                android:background="@drawable/edittext_default"
+            <TextView
+                android:textColor="@color/sky"
+                android:text="@string/login_noti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

@@ -35,6 +35,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         mTitles = new ArrayList<>();
     }
 
+    public void removeAllFragment(){
+        mFragments.clear();
+        mIcons.clear();
+        mTitles.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public Fragment getItem(int position) {
         return mFragments.get(position);

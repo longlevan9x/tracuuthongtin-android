@@ -1,12 +1,16 @@
-package vn.com.dtsgroup.look_up_information_android.Init;
+package vn.com.dtsgroup.look_up_information_android.Activities.Start;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 
-import vn.com.dtsgroup.look_up_information_android.Login.LoginActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import vn.com.dtsgroup.look_up_information_android.Activities.Login.LoginActivity;
+import vn.com.dtsgroup.look_up_information_android.Init.Module;
 
 /*******************************
  *                             *
@@ -21,10 +25,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         startLogin();
+
+//        Log.e("HIHI", FirebaseInstanceId.getInstance().getToken().toString());
+
+//        if(Module.isNetworkAvailable(MainActivity.this)){
+//            Log.e(MainActivity.class.getName().toString(), "Connected");
+//        }
+//        else{
+//            Log.e(MainActivity.class.getName().toString(), "Not Connected");
+//        }
     }
 
     private void startLogin(){
-        (new CountDownTimer(1500,1500){
+        (new CountDownTimer(1000,1000){
 
             @Override
             public void onTick(long l) {
