@@ -5,10 +5,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:gravity="center"
-        android:text="Hihi"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="@dimen/general_margin"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/gtthuong"
+                        android:layout_gravity="center"
+                        android:id="@+id/img_info_student"
+                        android:layout_width="@dimen/image_student_width"
+                        android:layout_height="@dimen/image_student_height" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:paddingBottom="@dimen/edittext_padding"
+                        android:paddingTop="@dimen/edittext_padding"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:id="@+id/txt_info_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingLeft="@dimen/edittext_padding"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/VTextView.Default"
+                            android:text="@string/info_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/txt_info_state"
+                            style="@style/VTextView.State"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txt_info"
+                        style="@style/VTextView.Default"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginBottom="@dimen/edittext_padding"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <TextView
+                android:id="@+id/txt_info_1"
+                style="@style/VTextView.Default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

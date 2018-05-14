@@ -34,6 +34,21 @@
         <item name="android:layout_marginLeft">@dimen/edittext_padding</item>
     </style>
 
+    <style name="VTextView.Default" parent="android:Widget.TextView">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:paddingTop">@dimen/edittext_padding</item>
+        <item name="android:paddingBottom">@dimen/edittext_padding</item>
+        <item name="android:paddingLeft">@dimen/edittext_padding</item>
+    </style>
+    <style name="VTextView.State" parent="android:Widget.TextView">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:paddingTop">@dimen/edittext_padding</item>
+        <item name="android:paddingBottom">@dimen/edittext_padding</item>
+    </style>
+
     <style name="VLinkTextView" parent="android:Widget.TextView">
         <item name="android:paddingTop">@dimen/edittext_padding</item>
         <item name="android:paddingRight">@dimen/edittext_padding</item>

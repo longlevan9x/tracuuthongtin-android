@@ -42,6 +42,8 @@ import vn.com.dtsgroup.look_up_information_android.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
 
+    public static String TAG = "LOGINACTIVITY";
+
     private Button btn_login, btn_skip;
     private EditText edt_id;
     private TextView txt_noti;
@@ -125,8 +127,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void skip() {
-        startActivity(new Intent(LoginActivity.this, SearchActivity.class));
-        finish();
+        Intent intent = new Intent(LoginActivity.this, SearchActivity.class);
+        intent.putExtra("getIntent", TAG);
+        startActivity(intent);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package vn.com.dtsgroup.look_up_information_android.Activities.Home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -14,17 +15,21 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import vn.com.dtsgroup.look_up_information_android.Activities.Login.LoginActivity;
+import vn.com.dtsgroup.look_up_information_android.Activities.Search.SearchActivity;
 import vn.com.dtsgroup.look_up_information_android.Adapter.ViewPagerAdapter;
 import vn.com.dtsgroup.look_up_information_android.Class.Student;
 import vn.com.dtsgroup.look_up_information_android.Fragment.ScheduleExamFragment;
 import vn.com.dtsgroup.look_up_information_android.Fragment.ScheduleFragment;
 import vn.com.dtsgroup.look_up_information_android.Init.DataManager;
+import vn.com.dtsgroup.look_up_information_android.Init.VLDxxxModule;
 import vn.com.dtsgroup.look_up_information_android.R;
 import vn.com.dtsgroup.look_up_information_android.Init.Module;
 
@@ -36,6 +41,8 @@ import vn.com.dtsgroup.look_up_information_android.Init.Module;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static String TAG = "HOMEACTIVITY";
 
     public static String INFOMATIONTITLE = "Thông tin";
     public static String MARKTITLE = "Bảng điểm";
@@ -50,15 +57,13 @@ public class HomeActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private CircleImageView img_student;
-    private TextView txt_fullname, txt_code;
+    private TextView txt_fullname, txt_code, txt_link_author, txt_link_author1;
 
     private ViewPager viewPagerSchedule, viewPagerScheduleExam;
     private TabLayout tabLayoutSchedule, tabLayoutScheduleExam;
     private ViewPagerAdapter adapterSchedule, adapterScheduleExam;
 
     private LinearLayout infomationLayout, markLayout, scheduleLayout, scheduleExamLayout, aboutLayout;
-
-    private TextView txt_link_author, txt_link_author1;
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -87,7 +92,7 @@ public class HomeActivity extends AppCompatActivity
         dataManager = new DataManager(getApplicationContext());
         student = dataManager.getStudentbyCODE(code);
 
-        Picasso.with(getApplicationContext()).load("http://daotaotn.uneti.edu.vn/GetImage.aspx?MSSV=" + code)
+        Picasso.with(getApplicationContext()).load(Module.IMAGESTUDENT + code)
                 .into(img_student);
         txt_fullname.setText(student.getName());
         txt_code.setText(code);
@@ -127,8 +132,30 @@ public class HomeActivity extends AppCompatActivity
         tabLayoutScheduleExam.setupWithViewPager(viewPagerScheduleExam);
     }
 
-    private void initInfomation(){
+    private void initInfomation() {
+        String code = student.getCode();
+        Picasso.with(getApplicationContext()).load(Module.IMAGESTUDENT + code)
+                .into((ImageView) findViewById(R.id.img_info_student));
+        ((TextView) findViewById(R.id.txt_info_code)).setText(code);
+        ((TextView) findViewById(R.id.txt_info_state)).setText(" " + student.getStatus());
 
+        String info =  "Ngày vào trường: " + student.getDay_admission() + "\n\n"
+                + "Cơ sở: " + student.getArea() + "\n\n"
+                + "Niên khóa: " + student.getSchool_year() + "\n\n"
+                + "Bậc đào tạo: " + student.getEducation_level() + "\n\n"
+                + "Loại hình đào tạo: " + student.getType_education() + "\n\n"
+                + "Khoa: " + student.getId_department() + "\n\n"
+                + "Ngành: " + student.getBranch_group() + "\n\n"
+                + "Chuyên ngành: " + student.getBranch() + "\n\n"
+                + "Lớp: " + student.get_class();
+
+        String info1 ="Giới tính: " + student.getGender() + "\n\n"
+                + "Khóa: " + student.getCourse() + "\n\n"
+                + "Tổng tín chỉ: " + student.getTotal_term() + "\n\n"
+                + "Điểm tích lũy: " + student.getAverage_cumulative();
+
+        ((TextView) findViewById(R.id.txt_info)).setText(info1);
+        ((TextView) findViewById(R.id.txt_info_1)).setText(info);
     }
 
     private void initAbout() {
@@ -160,7 +187,7 @@ public class HomeActivity extends AppCompatActivity
     private void showInfomation() {
         hideAllLayouts();
         infomationLayout.setVisibility(View.VISIBLE);
-        setTitle(INFOMATIONTITLE);
+        setTitle(INFOMATIONTITLE + " - " + VLDxxxModule.DanhTuRieng(student.getName()));
     }
 
     private void showMark() {
@@ -253,8 +280,15 @@ public class HomeActivity extends AppCompatActivity
                 }
                 break;
 
-            case R.id.nav_logout:
+            case R.id.nav_search:
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                intent.putExtra("getIntent", TAG);
+                startActivity(intent);
+                break;
 
+            case R.id.nav_logout:
+                Module.updateLoginState(getApplicationContext(), false, "");
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                 break;
 
             case R.id.nav_about:

@@ -18,6 +18,8 @@ public class Module {
     public static String APILINKV1 = APILINK + "v1/";
     public static String STUDENTAPILINK = APILINKV1 + "student/";
 
+    public static String IMAGESTUDENT = "http://daotaotn.uneti.edu.vn/GetImage.aspx?MSSV=";
+
     public static int PRIMARY_R = 26;
     public static int PRIMARY_G = 101;
     public static int PRIMARY_B = 171;

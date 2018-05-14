@@ -24,6 +24,10 @@
 
     <group android:id="@+id/icon_group2" android:checkableBehavior="single">
         <item
+            android:icon="@drawable/search_64"
+            android:id="@+id/nav_search"
+            android:title="@string/nav_item_search"/>
+        <item
             android:icon="@drawable/shutdown_64"
             android:id="@+id/nav_logout"
             android:title="@string/nav_item_logout" />

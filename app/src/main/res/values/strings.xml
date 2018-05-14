@@ -16,7 +16,11 @@
     <string name="nav_item_schedule_exam">Lịch thi</string>
     <string name="nav_item_logout">Đăng xuất</string>
     <string name="nav_item_about">About</string>
+    <string name="nav_item_search">Tra cứu thông tin</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="info_state">Trạng thái: </string>
+    <string name="info_sex">Giới tính: </string>
 </resources>

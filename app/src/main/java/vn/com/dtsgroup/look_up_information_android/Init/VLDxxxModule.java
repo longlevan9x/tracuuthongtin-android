@@ -40,7 +40,7 @@ public class VLDxxxModule {
         String[] list = string.split(" ");
         string = "";
         for (int i = 0; i < list.length; i++) {
-            string += String.valueOf(list[i].charAt(0)).toUpperCase() + list[i].substring(1).toLowerCase();
+            string += String.valueOf(list[i].charAt(0)).toUpperCase() + list[i].substring(1).toLowerCase() + " ";
         }
         return string;
     }

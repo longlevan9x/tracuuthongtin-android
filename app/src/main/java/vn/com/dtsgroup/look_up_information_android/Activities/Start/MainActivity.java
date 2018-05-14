@@ -49,22 +49,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void afterWellcome() {
-        (new CountDownTimer(1000, 1000) {
+        if (Module.loginState(getApplicationContext())) {
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+        } else
+            (new CountDownTimer(1000, 1000) {
 
-            @Override
-            public void onTick(long l) {
+                @Override
+                public void onTick(long l) {
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
-                if(Module.loginState(getApplicationContext()))
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                else
+                @Override
+                public void onFinish() {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
-            }
-        }).start();
+                    finish();
+                }
+            }).start();
     }
 
     @Override
