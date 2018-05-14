@@ -1,14 +1,14 @@
 package vn.com.dtsgroup.look_up_information_android.Activities.Start;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
+import vn.com.dtsgroup.look_up_information_android.Activities.Home.HomeActivity;
 import vn.com.dtsgroup.look_up_information_android.Activities.Login.LoginActivity;
 import vn.com.dtsgroup.look_up_information_android.Init.Module;
 
@@ -20,11 +20,23 @@ import vn.com.dtsgroup.look_up_information_android.Init.Module;
 
 public class MainActivity extends AppCompatActivity {
 
+    public boolean isTableExists(SQLiteDatabase database, String tableName) {
+        Cursor cursor = database.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + tableName + "'", null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+        }
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        startLogin();
+        afterWellcome();
 
 //        Log.e("HIHI", FirebaseInstanceId.getInstance().getToken().toString());
 
@@ -36,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
-    private void startLogin(){
-        (new CountDownTimer(1000,1000){
+    private void afterWellcome() {
+        (new CountDownTimer(1000, 1000) {
 
             @Override
             public void onTick(long l) {
@@ -46,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                if(Module.loginState(getApplicationContext()))
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                else
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             }
         }).start();

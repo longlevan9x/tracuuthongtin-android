@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.Normalizer;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,5 +89,14 @@ public class VLDxxxModule {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static String DateToString(Date date){
+        return date.getYear() + "-" + date.getMonth() + "-" + date.getDay();
+    }
+
+    public static String DateTimeToString(Date date){
+        return date.getYear() + "-" + date.getMonth() + "-" + date.getDay()
+                + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     }
 }

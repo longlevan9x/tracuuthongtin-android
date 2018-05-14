@@ -22,12 +22,18 @@
             android:title="@string/nav_item_schedule_exam" />
     </group>
 
-
     <group android:id="@+id/icon_group2" android:checkableBehavior="single">
         <item
             android:icon="@drawable/shutdown_64"
             android:id="@+id/nav_logout"
             android:title="@string/nav_item_logout" />
+    </group>
+
+    <group android:id="@+id/icon_group3" android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/help_64"
+            android:id="@+id/nav_about"
+            android:title="@string/nav_item_about" />
     </group>
 
 </menu>

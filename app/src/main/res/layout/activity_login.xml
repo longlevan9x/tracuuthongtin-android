@@ -3,46 +3,82 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.Login.LoginActivity">
 
-    <ScrollView
+    <TextView
+        android:gravity="center"
+        android:padding="@dimen/edittext_padding"
+        android:textColor="@android:color/holo_red_light"
+        android:id="@+id/txt_login_noti"
+        android:text="Mã sinh viên không tồn tại"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:paddingLeft="@dimen/layout_padding"
-            android:paddingTop="@dimen/layout_padding"
-            android:paddingRight="@dimen/layout_padding"
-            android:orientation="vertical"
+    <LinearLayout
+        android:paddingTop="@dimen/layout_padding"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="@dimen/layout_padding"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:scaleType="centerInside"
+            android:src="@drawable/banner_name_only"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-            <ImageView
-                android:scaleType="centerInside"
-                android:src="@drawable/banner_name_only"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <EditText
+            android:inputType="number"
+            android:id="@+id/edt_idStudent"
+            style="@style/VEditText"
+            android:hint="@string/id_student"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
 
-            <EditText
-                android:textCursorDrawable="@drawable/cursor"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/textColorHint"
-                android:hint="@string/id_student"
-                android:background="@drawable/edittext_default"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
+        <TextView
+            android:textSize="@dimen/labelTextSizeSmall"
+            android:textColor="@color/sky"
+            android:text="@string/login_noti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
 
-            <TextView
-                android:textColor="@color/sky"
-                android:text="@string/login_noti"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <Button
+            style="@style/VButton"
+            android:text="@string/login_name"
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
 
-        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/pbLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
 
-    </ScrollView>
+        <Button
+            style="@style/VSkipButton"
+            android:text="@string/skip_login_noti"
+            android:id="@+id/btn_skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:fontFamily="monospace"
+        android:paddingTop="@dimen/edittext_padding"
+        android:paddingBottom="@dimen/edittext_padding"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/about_made_by"
+        android:gravity="bottom|center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
