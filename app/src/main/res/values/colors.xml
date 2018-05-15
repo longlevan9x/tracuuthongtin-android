@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="dialog.ok">#38b259</color>
+    <color name="dialog.cancel">#d46458</color>
+
     <color name="colorPrimary">#1a65ab</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#000000</color>

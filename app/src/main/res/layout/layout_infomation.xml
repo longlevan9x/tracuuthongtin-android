@@ -25,7 +25,6 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/gtthuong"
                         android:layout_gravity="center"
                         android:id="@+id/img_info_student"
                         android:layout_width="@dimen/image_student_width"

@@ -22,8 +22,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_student"
             android:layout_width="@dimen/info_size"
-            android:layout_height="@dimen/info_size"
-            android:src="@drawable/gtthuong"/>
+            android:layout_height="@dimen/info_size" />
 
         <LinearLayout
             android:paddingLeft="@dimen/general_margin"
@@ -38,7 +37,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
-                android:text="Giang Thị Thu Hương"
                 android:textSize="@dimen/drawer_text_size"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -47,8 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif-monospace"
-                android:textColor="@android:color/white"
-                android:text="14102100054" />
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

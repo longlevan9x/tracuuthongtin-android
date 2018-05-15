@@ -41,6 +41,7 @@
         <item name="android:paddingBottom">@dimen/edittext_padding</item>
         <item name="android:paddingLeft">@dimen/edittext_padding</item>
     </style>
+
     <style name="VTextView.State" parent="android:Widget.TextView">
         <item name="android:fontFamily">serif</item>
         <item name="android:textStyle">bold</item>
@@ -65,7 +66,21 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="VSkipButton" parent="android:Widget.Button">
+    <style name="VButton.Dialog.OK" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_dialog_ok</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/dialog.ok</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="VButton.Dialog.CANCEL" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_dialog_cancel</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/dialog.cancel</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="VButton.Skip" parent="android:Widget.Button">
         <item name="android:textAllCaps">false</item>
         <item name="android:background">@drawable/button_skip</item>
         <item name="android:textColor">@color/colorPrimary</item>

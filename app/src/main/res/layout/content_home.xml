@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activities.Home.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
-    <include layout="@layout/layout_infomation"/>
+    <include layout="@layout/layout_infomation" />
 
-    <include layout="@layout/layout_mark"/>
+    <include layout="@layout/layout_mark" />
 
-    <include layout="@layout/layout_schedule"/>
+    <include layout="@layout/layout_schedule" />
 
-    <include layout="@layout/layout_schedule_exam"/>
+    <include layout="@layout/layout_schedule_exam" />
 
-    <include layout="@layout/layout_about"/>
+    <include layout="@layout/layout_debt" />
+
+    <include layout="@layout/layout_about" />
 
 </LinearLayout>

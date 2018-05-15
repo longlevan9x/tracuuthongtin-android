@@ -1,5 +1,12 @@
 <resources>
 
+    <string name="search">Tìm kiếm</string>
+    <string name="lookup">Tra cứu thông tin</string>
+
+    <string name="system.exit">Thoát khỏi Look-up Student?</string>
+    <string name="dialog.ok">Ok</string>
+    <string name="dialog.cancel">Cancel</string>
+
     <string name="about_made_by">Phát triển bởi LuS Team</string>
     
     <string name="app_name">Look-up Student</string>
@@ -14,6 +21,7 @@
     <string name="nav_item_mark">Xem điểm</string>
     <string name="nav_item_schedule">Lịch học</string>
     <string name="nav_item_schedule_exam">Lịch thi</string>
+    <string name="nav_item_debt">Công nợ</string>
     <string name="nav_item_logout">Đăng xuất</string>
     <string name="nav_item_about">About</string>
     <string name="nav_item_search">Tra cứu thông tin</string>

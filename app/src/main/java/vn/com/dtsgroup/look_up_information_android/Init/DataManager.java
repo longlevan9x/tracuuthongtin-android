@@ -5,9 +5,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.Locale;
 
+import vn.com.dtsgroup.look_up_information_android.Class.Area;
 import vn.com.dtsgroup.look_up_information_android.Class.Student;
 
 /*******************************
@@ -29,8 +31,17 @@ public class DataManager {
         this.context = context;
         this.database = context.openOrCreateDatabase(DataManager.DATABASENAME, SQLiteDatabase.CREATE_IF_NECESSARY,
                 null);
-        if(!isTableExists(Student.TABLENAME)){
+        createTable();
+        insertOrUpdateArea(new Area(10, "Hà Nội"));
+        insertOrUpdateArea(new Area(20, "Nam Định"));
+    }
+
+    public void createTable() {
+        if (!isTableExists(Student.TABLENAME)) {
             createTableStudent();
+        }
+        if (!isTableExists(Area.TABLENAME)) {
+            createTableArea();
         }
     }
 
@@ -47,20 +58,46 @@ public class DataManager {
         return false;
     }
 
-    public SQLiteDatabase getDatabase() {
-        return database;
+    public void createTableArea() {
+        database.execSQL(Area.SQLSTRINGCREATETABLE);
     }
 
-    public void setDatabase(SQLiteDatabase database) {
-        this.database = database;
+    public boolean insertOrUpdateArea(Area area) {
+        if (updateArea(area) != 0)
+            return true;
+        else if (insertArea(area) != -1)
+            return true;
+        return false;
+    }
+
+    public long insertArea(Area area) {
+        long l = database.insert(Area.TABLENAME, null, area.values());
+        return l;
+    }
+
+    public long updateArea(Area area) {
+        long l = database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + "=?",
+                new String[]{String.valueOf(area.getCode())});
+        return l;
     }
 
     public void createTableStudent() {
         database.execSQL(Student.SQLSTRINGCREATETABLE);
     }
 
+    public Area getAreaByCode(String code) {
+        Cursor cursor = database.query(Area.TABLENAME, Area.COLUMNS, Area.COLUMN_CODE + "=?",
+                new String[]{code}, null, null, null, null);
+        Log.e("Area", String.valueOf(cursor.getCount()));
+        if (cursor.getCount() == 0)
+            return null;
+        Area area = new Area(cursor);
+        cursor.close();
+        return area;
+    }
+
     public boolean insertOrUpdateStudent(Student student) {
-        if (updateStudent(student) != -1)
+        if (updateStudent(student) != 0)
             return true;
         else if (insertStudent(student) != -1)
             return true;
@@ -79,12 +116,20 @@ public class DataManager {
     }
 
     public Student getStudentbyCODE(String code) {
-        Cursor cursor = database.query(Student.TABLENAME, Student.COLUMNS, Student.COLUMN_CODE += "=?",
+        Cursor cursor = database.query(Student.TABLENAME, Student.COLUMNS, Student.COLUMN_CODE + "=?",
                 new String[]{code}, null, null, null, null);
         if (cursor.getCount() == 0)
             return null;
         Student student = new Student(cursor);
         cursor.close();
         return student;
+    }
+
+    public SQLiteDatabase getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(SQLiteDatabase database) {
+        this.database = database;
     }
 }

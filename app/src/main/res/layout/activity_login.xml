@@ -63,7 +63,7 @@
             android:layout_marginBottom="@dimen/edittext_margin_bottom"/>
 
         <Button
-            style="@style/VSkipButton"
+            style="@style/VButton.Skip"
             android:text="@string/skip_login_noti"
             android:id="@+id/btn_skip"
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package vn.com.dtsgroup.look_up_information_android.Activities.Home;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,11 +11,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import vn.com.dtsgroup.look_up_information_android.Activities.Login.LoginActivity;
 import vn.com.dtsgroup.look_up_information_android.Activities.Search.SearchActivity;
 import vn.com.dtsgroup.look_up_information_android.Adapter.ViewPagerAdapter;
+import vn.com.dtsgroup.look_up_information_android.Class.Area;
 import vn.com.dtsgroup.look_up_information_android.Class.Student;
 import vn.com.dtsgroup.look_up_information_android.Fragment.ScheduleExamFragment;
 import vn.com.dtsgroup.look_up_information_android.Fragment.ScheduleFragment;
@@ -40,7 +46,7 @@ import vn.com.dtsgroup.look_up_information_android.Init.Module;
  *******************************/
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SearchView.OnQueryTextListener {
 
     public static String TAG = "HOMEACTIVITY";
 
@@ -62,6 +68,8 @@ public class HomeActivity extends AppCompatActivity
     private ViewPager viewPagerSchedule, viewPagerScheduleExam;
     private TabLayout tabLayoutSchedule, tabLayoutScheduleExam;
     private ViewPagerAdapter adapterSchedule, adapterScheduleExam;
+    private Dialog dialog_exit;
+    private MenuItem item_search;
 
     private LinearLayout infomationLayout, markLayout, scheduleLayout, scheduleExamLayout, aboutLayout;
 
@@ -88,11 +96,11 @@ public class HomeActivity extends AppCompatActivity
         txt_fullname = navigationView.getHeaderView(0).findViewById(R.id.txt_fullname_header);
         txt_code = navigationView.getHeaderView(0).findViewById(R.id.txt_IDStudent);
 
-        String code = Module.IDStudent(getApplicationContext());
-        dataManager = new DataManager(getApplicationContext());
+        String code = Module.IDStudent(this);
+        dataManager = new DataManager(this);
         student = dataManager.getStudentbyCODE(code);
 
-        Picasso.with(getApplicationContext()).load(Module.IMAGESTUDENT + code)
+        Picasso.with(this).load(Module.IMAGESTUDENT + code)
                 .into(img_student);
         txt_fullname.setText(student.getName());
         txt_code.setText(code);
@@ -134,13 +142,15 @@ public class HomeActivity extends AppCompatActivity
 
     private void initInfomation() {
         String code = student.getCode();
-        Picasso.with(getApplicationContext()).load(Module.IMAGESTUDENT + code)
+        Picasso.with(this).load(Module.IMAGESTUDENT + code)
                 .into((ImageView) findViewById(R.id.img_info_student));
         ((TextView) findViewById(R.id.txt_info_code)).setText(code);
         ((TextView) findViewById(R.id.txt_info_state)).setText(" " + student.getStatus());
 
+        Area area = dataManager.getAreaByCode(String.valueOf(student.getArea()));
+
         String info =  "Ngày vào trường: " + student.getDay_admission() + "\n\n"
-                + "Cơ sở: " + student.getArea() + "\n\n"
+                + "Cơ sở: " + area.getName() + "\n\n"
                 + "Niên khóa: " + student.getSchool_year() + "\n\n"
                 + "Bậc đào tạo: " + student.getEducation_level() + "\n\n"
                 + "Loại hình đào tạo: " + student.getType_education() + "\n\n"
@@ -174,6 +184,14 @@ public class HomeActivity extends AppCompatActivity
         scheduleLayout = findViewById(R.id.scheduleLayout);
         scheduleExamLayout = findViewById(R.id.scheduleExamLayout);
         aboutLayout = findViewById(R.id.aboutLayout);
+        initDialogExit();
+    }
+    private void initDialogExit(){
+        dialog_exit = new Dialog(this);
+        dialog_exit.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_exit.setContentView(R.layout.dialog_exit);
+        ((Button) dialog_exit.findViewById(R.id.btn_dialog_exit_ok)).setOnClickListener(this);
+        ((Button) dialog_exit.findViewById(R.id.btn_dialog_exit_cancel)).setOnClickListener(this);
     }
 
     private void hideAllLayouts() {
@@ -187,7 +205,7 @@ public class HomeActivity extends AppCompatActivity
     private void showInfomation() {
         hideAllLayouts();
         infomationLayout.setVisibility(View.VISIBLE);
-        setTitle(INFOMATIONTITLE + " - " + VLDxxxModule.DanhTuRieng(student.getName()));
+        setTitle(INFOMATIONTITLE + " - " + VLDxxxModule.ProperNoun(student.getName()));
     }
 
     private void showMark() {
@@ -240,13 +258,18 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            dialog_exit.show();
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_search, menu);
+        item_search = menu.findItem(R.id.itemSearch);
+        SearchView searchView = (SearchView) item_search.getActionView();
+        searchView.setOnQueryTextListener(this);
+        item_search.setVisible(false);
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -254,6 +277,7 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        boolean search = false;
 
         switch (id) {
             case R.id.nav_info:
@@ -265,6 +289,7 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_mark:
                 if (markLayout.getVisibility() == View.GONE) {
                     showMark();
+                    search = true;
                 }
                 break;
 
@@ -280,6 +305,12 @@ public class HomeActivity extends AppCompatActivity
                 }
                 break;
 
+            case R.id.nav_debt:
+                if (scheduleExamLayout.getVisibility() == View.GONE) {
+                    showScheduleExam();
+                }
+                break;
+
             case R.id.nav_search:
                 Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
                 intent.putExtra("getIntent", TAG);
@@ -287,8 +318,9 @@ public class HomeActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_logout:
-                Module.updateLoginState(getApplicationContext(), false, "");
+                Module.updateLoginState(this, false, "");
                 startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                finish();
                 break;
 
             case R.id.nav_about:
@@ -296,7 +328,32 @@ public class HomeActivity extends AppCompatActivity
                 break;
         }
 
+        item_search.setVisible(search);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id){
+            case R.id.btn_dialog_exit_ok:
+                finish();
+                break;
+
+            case R.id.btn_dialog_exit_cancel:
+                dialog_exit.hide();
+                break;
+        }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }

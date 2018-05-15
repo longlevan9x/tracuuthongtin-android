@@ -31,12 +31,12 @@ public class VLDxxxModule {
         return false;
     }
 
-    public static String XoaKhoangTrang(String string) {
+    public static String DeleteWhitespace(String string) {
         return string.trim().replaceAll("\\s+", " ");
     }
 
-    public static String DanhTuRieng(String string) {
-        string = XoaKhoangTrang(string);
+    public static String ProperNoun(String string) {
+        string = DeleteWhitespace(string);
         String[] list = string.split(" ");
         string = "";
         for (int i = 0; i < list.length; i++) {
@@ -45,7 +45,7 @@ public class VLDxxxModule {
         return string;
     }
 
-    public static String removeAccent(String s) {
+    public static String RemoveAccent(String s) {
         s = s.replaceAll("đ", "d");
         s = s.replaceAll("Đ", "D");
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
