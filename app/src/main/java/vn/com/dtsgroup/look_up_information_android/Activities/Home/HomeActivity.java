@@ -55,6 +55,7 @@ public class HomeActivity extends AppCompatActivity
     public static String SCHEDULETITLE = "Lịch học";
     public static String SCHEDULEEXAMTITLE = "Lịch thi";
     public static String ABOUTTITLE = "About";
+    public static String DEBTTITLE = "Công nợ";
 
     private Student student;
     private DataManager dataManager;
@@ -71,7 +72,7 @@ public class HomeActivity extends AppCompatActivity
     private Dialog dialog_exit;
     private MenuItem item_search;
 
-    private LinearLayout infomationLayout, markLayout, scheduleLayout, scheduleExamLayout, aboutLayout;
+    private LinearLayout infomationLayout, markLayout, scheduleLayout, scheduleExamLayout, aboutLayout, debtLayout;
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -149,7 +150,7 @@ public class HomeActivity extends AppCompatActivity
 
         Area area = dataManager.getAreaByCode(String.valueOf(student.getArea()));
 
-        String info =  "Ngày vào trường: " + student.getDay_admission() + "\n\n"
+        String info = "Ngày vào trường: " + student.getDay_admission() + "\n\n"
                 + "Cơ sở: " + area.getName() + "\n\n"
                 + "Niên khóa: " + student.getSchool_year() + "\n\n"
                 + "Bậc đào tạo: " + student.getEducation_level() + "\n\n"
@@ -159,7 +160,7 @@ public class HomeActivity extends AppCompatActivity
                 + "Chuyên ngành: " + student.getBranch() + "\n\n"
                 + "Lớp: " + student.get_class();
 
-        String info1 ="Giới tính: " + student.getGender() + "\n\n"
+        String info1 = "Giới tính: " + student.getGender() + "\n\n"
                 + "Khóa: " + student.getCourse() + "\n\n"
                 + "Tổng tín chỉ: " + student.getTotal_term() + "\n\n"
                 + "Điểm tích lũy: " + student.getAverage_cumulative();
@@ -184,9 +185,11 @@ public class HomeActivity extends AppCompatActivity
         scheduleLayout = findViewById(R.id.scheduleLayout);
         scheduleExamLayout = findViewById(R.id.scheduleExamLayout);
         aboutLayout = findViewById(R.id.aboutLayout);
+        debtLayout = findViewById(R.id.debtLayout);
         initDialogExit();
     }
-    private void initDialogExit(){
+
+    private void initDialogExit() {
         dialog_exit = new Dialog(this);
         dialog_exit.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog_exit.setContentView(R.layout.dialog_exit);
@@ -200,6 +203,7 @@ public class HomeActivity extends AppCompatActivity
         scheduleLayout.setVisibility(View.GONE);
         scheduleExamLayout.setVisibility(View.GONE);
         aboutLayout.setVisibility(View.GONE);
+        debtLayout.setVisibility(View.GONE);
     }
 
     private void showInfomation() {
@@ -230,6 +234,12 @@ public class HomeActivity extends AppCompatActivity
         hideAllLayouts();
         aboutLayout.setVisibility(View.VISIBLE);
         setTitle(ABOUTTITLE);
+    }
+
+    private void showDebt(){
+        hideAllLayouts();
+        debtLayout.setVisibility(View.VISIBLE);
+        setTitle(DEBTTITLE);
     }
 
     private void init() {
@@ -306,8 +316,8 @@ public class HomeActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_debt:
-                if (scheduleExamLayout.getVisibility() == View.GONE) {
-                    showScheduleExam();
+                if (debtLayout.getVisibility() == View.GONE) {
+                    showDebt();
                 }
                 break;
 
@@ -336,7 +346,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id){
+        switch (id) {
             case R.id.btn_dialog_exit_ok:
                 finish();
                 break;

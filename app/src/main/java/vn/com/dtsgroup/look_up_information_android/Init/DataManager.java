@@ -71,14 +71,12 @@ public class DataManager {
     }
 
     public long insertArea(Area area) {
-        long l = database.insert(Area.TABLENAME, null, area.values());
-        return l;
+        return  database.insert(Area.TABLENAME, null, area.values());
     }
 
     public long updateArea(Area area) {
-        long l = database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + "=?",
+        return database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + "=?",
                 new String[]{String.valueOf(area.getCode())});
-        return l;
     }
 
     public void createTableStudent() {
@@ -105,14 +103,12 @@ public class DataManager {
     }
 
     public long insertStudent(Student student) {
-        long l = database.insert(Student.TABLENAME, null, student.values());
-        return l;
+        return database.insert(Student.TABLENAME, null, student.values());
     }
 
     public long updateStudent(Student student) {
-        long l = database.update(Student.TABLENAME, student.values(), Student.COLUMN_ID + "=?",
+        return database.update(Student.TABLENAME, student.values(), Student.COLUMN_ID + "=?",
                 new String[]{String.valueOf(student.getId())});
-        return l;
     }
 
     public Student getStudentbyCODE(String code) {
