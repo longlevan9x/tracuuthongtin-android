@@ -63,7 +63,21 @@ public class Student {
             COLUMN_CREATE_AT + " TEXT, " +
             COLUMN_UPDATED_AT + " TEXT)";
 
-    public ContentValues values(){
+    public String updateToDB() {
+        return "UPDATE " + TABLENAME + " SET "
+                + COLUMN_ID + " = " + id + ", " + COLUMN_CODE + " = '" + code + "', " + COLUMN_NAME + " = '" + name + "', "
+                + COLUMN_CLASS + " = '" + _class + "', " + COLUMN_ID_DEPARTMENT + " = " + id_department + ", "
+                + COLUMN_BRANCH_GROUP + " = '" + branch_group + "', " + COLUMN_BRANCH + " = '" + branch + "', "
+                + COLUMN_STATUS + " = '" + status + "', " + COLUMN_DAY_ADMISSION + " = '" + day_admission + "', "
+                + COLUMN_SCHOOL_YEAR + " = '" + school_year + "', " + COLUMN_COURSE + " = " + course + ", "
+                + COLUMN_EDUCATION_LEVEL + " = '" + education_level + "', " + COLUMN_GENDER + " = '" + gender + "', "
+                + COLUMN_TYPE_EDUCATION + " = '" + type_education + "', " + COLUMN_AREA + " = " + area + ", "
+                + COLUMN_AVERAGE_CUMULATIVE + " = '" + average_cumulative + "', " + COLUMN_TOTAL_TERM + " = " + total_term + ", "
+                + COLUMN_CREATE_AT + " = '" + created_at + "', " + COLUMN_UPDATED_AT + " = '" + updated_at
+                + "' WHERE " + COLUMN_ID + " = " + id;
+    }
+
+    public ContentValues values() {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, getId());
         values.put(COLUMN_CODE, getCode());
@@ -117,7 +131,7 @@ public class Student {
         this.updated_at = updated_at;
     }
 
-    public Student(Cursor cursor){
+    public Student(Cursor cursor) {
         cursor.moveToFirst();
         this.id = cursor.getInt(0);
         this.code = cursor.getString(1);
@@ -140,7 +154,8 @@ public class Student {
         this.updated_at = cursor.getString(18);
     }
 
-    public Student(){}
+    public Student() {
+    }
 
     public int getId() {
         return id;

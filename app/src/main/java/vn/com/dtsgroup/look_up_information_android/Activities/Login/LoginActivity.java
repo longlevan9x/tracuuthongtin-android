@@ -167,6 +167,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     JSONObject object = jsonObject.getJSONObject("result");
                     Student student = new Student(
                             object.getInt("id"), object.getString("code"), object.getString("name"),
+//                            "Tin một", object.getInt("id_department"),
                             object.getString("class"), object.getInt("id_department"),
                             object.getString("branch_group"), object.getString("branch"),
                             object.getString("status"), object.getString("day_admission"),

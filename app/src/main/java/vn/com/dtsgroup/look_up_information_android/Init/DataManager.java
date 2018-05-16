@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -71,12 +72,11 @@ public class DataManager {
     }
 
     public long insertArea(Area area) {
-        return  database.insert(Area.TABLENAME, null, area.values());
+        return database.insert(Area.TABLENAME, null, area.values());
     }
 
     public long updateArea(Area area) {
-        return database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + "=?",
-                new String[]{String.valueOf(area.getCode())});
+        return database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + " = '" + area.getCode() + "'",null);
     }
 
     public void createTableStudent() {
@@ -95,10 +95,8 @@ public class DataManager {
     }
 
     public boolean insertOrUpdateStudent(Student student) {
-        if (updateStudent(student) != 0)
-            return true;
-        else if (insertStudent(student) != -1)
-            return true;
+        if(insertStudent(student) != -1 || updateStudent(student) != 0)
+            return  true;
         return false;
     }
 
@@ -106,9 +104,8 @@ public class DataManager {
         return database.insert(Student.TABLENAME, null, student.values());
     }
 
-    public long updateStudent(Student student) {
-        return database.update(Student.TABLENAME, student.values(), Student.COLUMN_ID + "=?",
-                new String[]{String.valueOf(student.getId())});
+    public int updateStudent(Student student) {
+        return database.update(Student.TABLENAME,student.values(), Student.COLUMN_ID + " = '"+ student.getId()+"'", null);
     }
 
     public Student getStudentbyCODE(String code) {
