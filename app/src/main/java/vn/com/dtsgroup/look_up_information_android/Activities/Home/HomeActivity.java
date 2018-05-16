@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity
     private ViewPager viewPagerSchedule, viewPagerScheduleExam;
     private TabLayout tabLayoutSchedule, tabLayoutScheduleExam;
     private ViewPagerAdapter adapterSchedule, adapterScheduleExam;
-    private Dialog dialog_exit;
+    private Dialog dialog_exit, dialog_logout;
     private MenuItem item_search;
 
     private LinearLayout infomationLayout, markLayout, scheduleLayout, scheduleExamLayout, aboutLayout, debtLayout;
@@ -186,7 +186,12 @@ public class HomeActivity extends AppCompatActivity
         scheduleExamLayout = findViewById(R.id.scheduleExamLayout);
         aboutLayout = findViewById(R.id.aboutLayout);
         debtLayout = findViewById(R.id.debtLayout);
+        initDialog();
+    }
+
+    private void initDialog() {
         initDialogExit();
+        initDialogLogout();
     }
 
     private void initDialogExit() {
@@ -195,6 +200,14 @@ public class HomeActivity extends AppCompatActivity
         dialog_exit.setContentView(R.layout.dialog_exit);
         ((Button) dialog_exit.findViewById(R.id.btn_dialog_exit_ok)).setOnClickListener(this);
         ((Button) dialog_exit.findViewById(R.id.btn_dialog_exit_cancel)).setOnClickListener(this);
+    }
+
+    private void initDialogLogout() {
+        dialog_logout = new Dialog(this);
+        dialog_logout.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_logout.setContentView(R.layout.dialog_logout);
+        ((Button) dialog_logout.findViewById(R.id.btn_dialog_logout_ok)).setOnClickListener(this);
+        ((Button) dialog_logout.findViewById(R.id.btn_dialog_logout_cancel)).setOnClickListener(this);
     }
 
     private void hideAllLayouts() {
@@ -236,7 +249,7 @@ public class HomeActivity extends AppCompatActivity
         setTitle(ABOUTTITLE);
     }
 
-    private void showDebt(){
+    private void showDebt() {
         hideAllLayouts();
         debtLayout.setVisibility(View.VISIBLE);
         setTitle(DEBTTITLE);
@@ -328,9 +341,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_logout:
-                Module.updateLoginState(this, false, "");
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                finish();
+                dialog_logout.show();
                 break;
 
             case R.id.nav_about:
@@ -354,7 +365,21 @@ public class HomeActivity extends AppCompatActivity
             case R.id.btn_dialog_exit_cancel:
                 dialog_exit.hide();
                 break;
+
+            case R.id.btn_dialog_logout_ok:
+                logout();
+                break;
+
+            case R.id.btn_dialog_logout_cancel:
+                dialog_logout.hide();
+                break;
         }
+    }
+
+    private void logout() {
+        Module.updateLoginState(this, false, "");
+        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+        finish();
     }
 
     @Override

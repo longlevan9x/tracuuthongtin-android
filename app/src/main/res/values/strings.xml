@@ -4,6 +4,7 @@
     <string name="lookup">Tra cứu thông tin</string>
 
     <string name="system.exit">Thoát khỏi Look-up Student?</string>
+    <string name="system.logout">Đăng xuất?</string>
     <string name="dialog.ok">Ok</string>
     <string name="dialog.cancel">Cancel</string>
 
