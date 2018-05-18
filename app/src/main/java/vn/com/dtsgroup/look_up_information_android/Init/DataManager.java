@@ -8,8 +8,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
+import vn.com.dtsgroup.look_up_information_android.Adapter.StudentAdapter;
 import vn.com.dtsgroup.look_up_information_android.Class.Area;
 import vn.com.dtsgroup.look_up_information_android.Class.Student;
 
@@ -63,6 +65,10 @@ public class DataManager {
         database.execSQL(Area.SQLSTRINGCREATETABLE);
     }
 
+    public String FacultyName(int id) {
+        return "Khoa Công nghệ Thông tin HN";
+    }
+
     public boolean insertOrUpdateArea(Area area) {
         if (updateArea(area) != 0)
             return true;
@@ -76,27 +82,33 @@ public class DataManager {
     }
 
     public long updateArea(Area area) {
-        return database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + " = '" + area.getCode() + "'",null);
+        return database.update(Area.TABLENAME, area.values(), Area.COLUMN_CODE + " = '" + area.getCode() + "'", null);
     }
 
     public void createTableStudent() {
         database.execSQL(Student.SQLSTRINGCREATETABLE);
     }
 
-    public Area getAreaByCode(String code) {
-        Cursor cursor = database.query(Area.TABLENAME, Area.COLUMNS, Area.COLUMN_CODE + "=?",
-                new String[]{code}, null, null, null, null);
+    public Area getAreaByCode(int code) {
+        Cursor cursor = database.query(Area.TABLENAME, Area.COLUMNS, Area.COLUMN_CODE + " = '" + code + "'",
+                null, null, null, null, null);
         Log.e("Area", String.valueOf(cursor.getCount()));
         if (cursor.getCount() == 0)
             return null;
+        cursor.moveToFirst();
         Area area = new Area(cursor);
         cursor.close();
         return area;
     }
 
+    public String AreaName(int code) {
+        Area area = getAreaByCode(code);
+        return area.getName();
+    }
+
     public boolean insertOrUpdateStudent(Student student) {
-        if(insertStudent(student) != -1 || updateStudent(student) != 0)
-            return  true;
+        if (insertStudent(student) != -1 || updateStudent(student) != 0)
+            return true;
         return false;
     }
 
@@ -105,7 +117,7 @@ public class DataManager {
     }
 
     public int updateStudent(Student student) {
-        return database.update(Student.TABLENAME,student.values(), Student.COLUMN_ID + " = '"+ student.getId()+"'", null);
+        return database.update(Student.TABLENAME, student.values(), Student.COLUMN_ID + " = '" + student.getId() + "'", null);
     }
 
     public Student getStudentbyCODE(String code) {
@@ -113,9 +125,27 @@ public class DataManager {
                 new String[]{code}, null, null, null, null);
         if (cursor.getCount() == 0)
             return null;
+        cursor.moveToFirst();
         Student student = new Student(cursor);
         cursor.close();
         return student;
+    }
+
+    public ArrayList<StudentAdapter.VStudent> Students(String query) {
+        ArrayList<StudentAdapter.VStudent> vstudents = new ArrayList<StudentAdapter.VStudent>();
+        Cursor cursor = database.query(Student.TABLENAME, Student.COLUMNS, Student.COLUMN_CODE + " = '" + query + "' OR "
+                        + Student.COLUMN_NAME + " = '" + query + "' OR " + Student.COLUMN_CLASS + " = '" + query + "'",
+                null, null, null, null, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int rank = 1;
+            while (!cursor.isAfterLast()) {
+                vstudents.add(new StudentAdapter.VStudent(rank, cursor));
+                cursor.moveToNext();
+                rank++;
+            }
+        }
+        return vstudents;
     }
 
     public SQLiteDatabase getDatabase() {

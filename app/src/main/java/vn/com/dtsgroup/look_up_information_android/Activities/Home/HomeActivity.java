@@ -148,14 +148,12 @@ public class HomeActivity extends AppCompatActivity
         ((TextView) findViewById(R.id.txt_info_code)).setText(code);
         ((TextView) findViewById(R.id.txt_info_state)).setText(" " + student.getStatus());
 
-        Area area = dataManager.getAreaByCode(String.valueOf(student.getArea()));
-
         String info = "Ngày vào trường: " + student.getDay_admission() + "\n\n"
-                + "Cơ sở: " + area.getName() + "\n\n"
+                + "Cơ sở: " + dataManager.AreaName(student.getArea()) + "\n\n"
                 + "Niên khóa: " + student.getSchool_year() + "\n\n"
                 + "Bậc đào tạo: " + student.getEducation_level() + "\n\n"
                 + "Loại hình đào tạo: " + student.getType_education() + "\n\n"
-                + "Khoa: " + student.getId_department() + "\n\n"
+                + "Khoa: " + dataManager.FacultyName(student.getId_department()) + "\n\n"
                 + "Ngành: " + student.getBranch_group() + "\n\n"
                 + "Chuyên ngành: " + student.getBranch() + "\n\n"
                 + "Lớp: " + student.get_class();

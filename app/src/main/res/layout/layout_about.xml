@@ -31,13 +31,13 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        style="@style/VLinkTextView"
+        style="@style/VTextView.Link"
         android:id="@+id/txt_link_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        style="@style/VLinkTextView"
+        style="@style/VTextView.Link"
         android:id="@+id/txt_link_author1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -50,13 +50,13 @@
 
     <TextView
         android:text="Email: VinhLD.IT@gmail.com"
-        style="@style/VLinkTextView"
+        style="@style/VTextView.Link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:text="Phone: +84 969 80 20 50"
-        style="@style/VLinkTextView"
+        style="@style/VTextView.Link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

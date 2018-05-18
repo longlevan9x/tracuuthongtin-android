@@ -3,8 +3,6 @@ package vn.com.dtsgroup.look_up_information_android.Activities.Login;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -14,15 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edt_id.addTextChangedListener(this);
         txt_noti = findViewById(R.id.txt_login_noti);
         txt_noti.setVisibility(View.GONE);
-        pbLogin = findViewById(R.id.pbLogin);
+        pbLogin = findViewById(R.id.progressBar);
         pbLogin.setVisibility(View.GONE);
     }
 

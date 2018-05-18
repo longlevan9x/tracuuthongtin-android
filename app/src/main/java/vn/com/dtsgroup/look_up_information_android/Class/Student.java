@@ -132,7 +132,6 @@ public class Student {
     }
 
     public Student(Cursor cursor) {
-        cursor.moveToFirst();
         this.id = cursor.getInt(0);
         this.code = cursor.getString(1);
         this.name = cursor.getString(2);

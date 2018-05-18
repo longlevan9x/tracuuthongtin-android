@@ -2,6 +2,7 @@
 
     <string name="search">Tìm kiếm</string>
     <string name="lookup">Tra cứu thông tin</string>
+    <string name="noti">Nhập mã sinh viên, họ tên hoặc lớp để tìm kiếm</string>
 
     <string name="system.exit">Thoát khỏi Look-up Student?</string>
     <string name="system.logout">Đăng xuất?</string>
