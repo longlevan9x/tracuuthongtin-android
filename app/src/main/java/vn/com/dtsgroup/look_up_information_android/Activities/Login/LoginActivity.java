@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -157,20 +158,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             super.onPostExecute(s);
             try {
                 JSONObject jsonObject = new JSONObject(s);
+                //Log.e("API GET STUDENT", s);
                 String message = jsonObject.getString("message");
+                Log.e("Message", message);
                 if (message.equals("success")) {
                     JSONObject object = jsonObject.getJSONObject("result");
                     Student student = new Student(
-                            object.getInt("id"), object.getString("code"), object.getString("name"),
-//                            "Tin một", object.getInt("id_department"),
-                            object.getString("class"), object.getInt("id_department"),
-                            object.getString("branch_group"), object.getString("branch"),
-                            object.getString("status"), object.getString("day_admission"),
-                            object.getString("school_year"), object.getInt("course"),
-                            object.getString("education_level"), object.getString("gender"),
-                            object.getString("type_education"), object.getInt("area"),
-                            object.getString("average_cumulative"), object.getInt("total_term"),
-                            object.getString("created_at"), object.getString("updated_at")
+                            object.getInt("id"),
+                            object.getString("code"),
+                            object.getString("name"),
+                            //"Tin một",
+                            //object.getInt("id_department"),
+                            object.getString("class"),
+                            object.getInt("id_department"),
+                            object.getString("branch_group"),
+                            object.getString("branch"),
+                            object.getString("status"),
+                            object.getString("day_admission"),
+                            object.getString("school_year"),
+                            object.getInt("course"),
+                            object.getString("education_level"),
+                            object.getString("gender"),
+                            object.getString("type_education"),
+                            object.getInt("area"),
+                            object.getString("department"),
+                            object.getString("average_cumulative"),
+                            object.getInt("total_term"),
+                            object.getString("created_at"),
+                            object.getString("updated_at")
                     );
 
                     afterLogin(student);

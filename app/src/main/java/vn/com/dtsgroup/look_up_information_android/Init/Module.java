@@ -13,10 +13,10 @@ import android.util.Base64;
 
 public class Module {
 
-    public static String DOMAINNAME = "https://tracuuthongtin.000webhostapp.com/tracuuthongtin-php/public/";
+    public static String DOMAINNAME = "http://banquyenlogo.vn/demo/tracuuthongtin-php/public/";
     public static String APILINK = DOMAINNAME + "api/";
     public static String APILINKV1 = APILINK + "v1/";
-    public static String STUDENTAPILINK = APILINKV1 + "student/";
+    public static String STUDENTAPILINK = APILINKV1 + "student?code=";
 
     public static String IMAGESTUDENT = "http://daotaotn.uneti.edu.vn/GetImage.aspx?MSSV=";
 

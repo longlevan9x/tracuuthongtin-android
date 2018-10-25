@@ -32,6 +32,7 @@ public class Student {
     public static String COLUMN_GENDER = "gender";
     public static String COLUMN_TYPE_EDUCATION = "type_education";
     public static String COLUMN_AREA = "area";
+    public static String COLUMN_DEPARTMENT = "department";
     public static String COLUMN_AVERAGE_CUMULATIVE = "average_cumulative";
     public static String COLUMN_TOTAL_TERM = "total_term";
     public static String COLUMN_CREATE_AT = "created_at";
@@ -39,7 +40,7 @@ public class Student {
 
     public static String[] COLUMNS = {COLUMN_ID, COLUMN_CODE, COLUMN_NAME, COLUMN_CLASS, COLUMN_ID_DEPARTMENT,
             COLUMN_BRANCH_GROUP, COLUMN_BRANCH, COLUMN_STATUS, COLUMN_DAY_ADMISSION, COLUMN_SCHOOL_YEAR,
-            COLUMN_COURSE, COLUMN_EDUCATION_LEVEL, COLUMN_GENDER, COLUMN_TYPE_EDUCATION, COLUMN_AREA,
+            COLUMN_COURSE, COLUMN_EDUCATION_LEVEL, COLUMN_GENDER, COLUMN_TYPE_EDUCATION, COLUMN_AREA, COLUMN_DEPARTMENT,
             COLUMN_AVERAGE_CUMULATIVE, COLUMN_TOTAL_TERM, COLUMN_CREATE_AT, COLUMN_UPDATED_AT};
 
     public static String SQLSTRINGCREATETABLE = "CREATE TABLE " + TABLENAME + "(" +
@@ -58,6 +59,7 @@ public class Student {
             COLUMN_GENDER + " TEXT, " +
             COLUMN_TYPE_EDUCATION + " TEXT, " +
             COLUMN_AREA + " integer, " +
+            COLUMN_DEPARTMENT + " TEXT, " +
             COLUMN_AVERAGE_CUMULATIVE + " TEXT, " +
             COLUMN_TOTAL_TERM + " integer, " +
             COLUMN_CREATE_AT + " TEXT, " +
@@ -65,15 +67,26 @@ public class Student {
 
     public String updateToDB() {
         return "UPDATE " + TABLENAME + " SET "
-                + COLUMN_ID + " = " + id + ", " + COLUMN_CODE + " = '" + code + "', " + COLUMN_NAME + " = '" + name + "', "
-                + COLUMN_CLASS + " = '" + _class + "', " + COLUMN_ID_DEPARTMENT + " = " + id_department + ", "
-                + COLUMN_BRANCH_GROUP + " = '" + branch_group + "', " + COLUMN_BRANCH + " = '" + branch + "', "
-                + COLUMN_STATUS + " = '" + status + "', " + COLUMN_DAY_ADMISSION + " = '" + day_admission + "', "
-                + COLUMN_SCHOOL_YEAR + " = '" + school_year + "', " + COLUMN_COURSE + " = " + course + ", "
-                + COLUMN_EDUCATION_LEVEL + " = '" + education_level + "', " + COLUMN_GENDER + " = '" + gender + "', "
-                + COLUMN_TYPE_EDUCATION + " = '" + type_education + "', " + COLUMN_AREA + " = " + area + ", "
-                + COLUMN_AVERAGE_CUMULATIVE + " = '" + average_cumulative + "', " + COLUMN_TOTAL_TERM + " = " + total_term + ", "
-                + COLUMN_CREATE_AT + " = '" + created_at + "', " + COLUMN_UPDATED_AT + " = '" + updated_at
+                + COLUMN_ID + " = " + id + ", "
+                + COLUMN_CODE + " = '" + code + "', "
+                + COLUMN_NAME + " = '" + name + "', "
+                + COLUMN_CLASS + " = '" + _class + "', "
+                + COLUMN_ID_DEPARTMENT + " = " + id_department + ", "
+                + COLUMN_BRANCH_GROUP + " = '" + branch_group + "', "
+                + COLUMN_BRANCH + " = '" + branch + "', "
+                + COLUMN_STATUS + " = '" + status + "', "
+                + COLUMN_DAY_ADMISSION + " = '" + day_admission + "', "
+                + COLUMN_SCHOOL_YEAR + " = '" + school_year + "', "
+                + COLUMN_COURSE + " = " + course + ", "
+                + COLUMN_EDUCATION_LEVEL + " = '" + education_level + "', "
+                + COLUMN_GENDER + " = '" + gender + "', "
+                + COLUMN_TYPE_EDUCATION + " = '" + type_education + "', "
+                + COLUMN_AREA + " = " + area + ", "
+                + COLUMN_DEPARTMENT + " = " + department + ", "
+                + COLUMN_AVERAGE_CUMULATIVE + " = '" + average_cumulative + "', "
+                + COLUMN_TOTAL_TERM + " = " + total_term + ", "
+                + COLUMN_CREATE_AT + " = '" + created_at + "', "
+                + COLUMN_UPDATED_AT + " = '" + updated_at
                 + "' WHERE " + COLUMN_ID + " = " + id;
     }
 
@@ -94,6 +107,7 @@ public class Student {
         values.put(COLUMN_GENDER, getGender());
         values.put(COLUMN_TYPE_EDUCATION, getType_education());
         values.put(COLUMN_AREA, getArea());
+        values.put(COLUMN_DEPARTMENT, getDepartment());
         values.put(COLUMN_AVERAGE_CUMULATIVE, getAverage_cumulative());
         values.put(COLUMN_TOTAL_TERM, getTotal_term());
         values.put(COLUMN_CREATE_AT, getCreated_at());
@@ -101,19 +115,20 @@ public class Student {
         return values;
     }
 
-    private int id, id_department, course, area, total_term;
+    private int id, id_department, area, course, total_term;
     private String code, name, _class, branch_group, branch, status, day_admission,
-            school_year, education_level, gender, type_education, average_cumulative;
+            school_year, education_level, gender, type_education, average_cumulative, department;
     private String created_at, updated_at;
 
     public Student(int id, String code, String name, String _class, int id_department, String branch_group,
                    String branch, String status, String day_admission, String school_year, int course,
-                   String education_level, String gender, String type_education, int area,
+                   String education_level, String gender, String type_education, int area, String department,
                    String average_cumulative, int total_term, String created_at, String updated_at) {
         this.id = id;
         this.id_department = id_department;
         this.course = course;
         this.area = area;
+        this.department = department;
         this.total_term = total_term;
         this.code = code;
         this.name = name;
@@ -147,10 +162,11 @@ public class Student {
         this.gender = cursor.getString(12);
         this.type_education = cursor.getString(13);
         this.area = cursor.getInt(14);
-        this.average_cumulative = cursor.getString(15);
-        this.total_term = cursor.getInt(16);
-        this.created_at = cursor.getString(17);
-        this.updated_at = cursor.getString(18);
+        this.department = cursor.getString(15);
+        this.average_cumulative = cursor.getString(16);
+        this.total_term = cursor.getInt(17);
+        this.created_at = cursor.getString(18);
+        this.updated_at = cursor.getString(19);
     }
 
     public Student() {
@@ -306,5 +322,13 @@ public class Student {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }
