@@ -21,7 +21,7 @@ public class Student {
     public static String COLUMN_CODE = "code";
     public static String COLUMN_NAME = "name";
     public static String COLUMN_CLASS = "_class";
-    public static String COLUMN_ID_DEPARTMENT = "id_department";
+    public static String COLUMN_DEPARTMENT_ID = "department_id";
     public static String COLUMN_BRANCH_GROUP = "branch_group";
     public static String COLUMN_BRANCH = "branch";
     public static String COLUMN_STATUS = "status";
@@ -38,7 +38,7 @@ public class Student {
     public static String COLUMN_CREATE_AT = "created_at";
     public static String COLUMN_UPDATED_AT = "updated_at";
 
-    public static String[] COLUMNS = {COLUMN_ID, COLUMN_CODE, COLUMN_NAME, COLUMN_CLASS, COLUMN_ID_DEPARTMENT,
+    public static String[] COLUMNS = {COLUMN_ID, COLUMN_CODE, COLUMN_NAME, COLUMN_CLASS, COLUMN_DEPARTMENT_ID,
             COLUMN_BRANCH_GROUP, COLUMN_BRANCH, COLUMN_STATUS, COLUMN_DAY_ADMISSION, COLUMN_SCHOOL_YEAR,
             COLUMN_COURSE, COLUMN_EDUCATION_LEVEL, COLUMN_GENDER, COLUMN_TYPE_EDUCATION, COLUMN_AREA, COLUMN_DEPARTMENT,
             COLUMN_AVERAGE_CUMULATIVE, COLUMN_TOTAL_TERM, COLUMN_CREATE_AT, COLUMN_UPDATED_AT};
@@ -48,7 +48,7 @@ public class Student {
             COLUMN_CODE + " TEXT UNIQUE, " +
             COLUMN_NAME + " TEXT, " +
             COLUMN_CLASS + " TEXT, " +
-            COLUMN_ID_DEPARTMENT + " integer, " +
+            COLUMN_DEPARTMENT_ID + " integer, " +
             COLUMN_BRANCH_GROUP + " TEXT, " +
             COLUMN_BRANCH + " TEXT, " +
             COLUMN_STATUS + " TEXT, " +
@@ -71,7 +71,7 @@ public class Student {
                 + COLUMN_CODE + " = '" + code + "', "
                 + COLUMN_NAME + " = '" + name + "', "
                 + COLUMN_CLASS + " = '" + _class + "', "
-                + COLUMN_ID_DEPARTMENT + " = " + id_department + ", "
+                + COLUMN_DEPARTMENT_ID + " = " + department_id + ", "
                 + COLUMN_BRANCH_GROUP + " = '" + branch_group + "', "
                 + COLUMN_BRANCH + " = '" + branch + "', "
                 + COLUMN_STATUS + " = '" + status + "', "
@@ -96,7 +96,7 @@ public class Student {
         values.put(COLUMN_CODE, getCode());
         values.put(COLUMN_NAME, getName());
         values.put(COLUMN_CLASS, get_class());
-        values.put(COLUMN_ID_DEPARTMENT, getId_department());
+        values.put(COLUMN_DEPARTMENT_ID, getId_department());
         values.put(COLUMN_BRANCH_GROUP, getBranch_group());
         values.put(COLUMN_BRANCH, getBranch());
         values.put(COLUMN_STATUS, getStatus());
@@ -115,17 +115,17 @@ public class Student {
         return values;
     }
 
-    private int id, id_department, area, course, total_term;
+    private int id, department_id, area, course, total_term;
     private String code, name, _class, branch_group, branch, status, day_admission,
             school_year, education_level, gender, type_education, average_cumulative, department;
     private String created_at, updated_at;
 
-    public Student(int id, String code, String name, String _class, int id_department, String branch_group,
+    public Student(int id, String code, String name, String _class, int department_id, String branch_group,
                    String branch, String status, String day_admission, String school_year, int course,
                    String education_level, String gender, String type_education, int area, String department,
                    String average_cumulative, int total_term, String created_at, String updated_at) {
         this.id = id;
-        this.id_department = id_department;
+        this.department_id = department_id;
         this.course = course;
         this.area = area;
         this.department = department;
@@ -151,7 +151,7 @@ public class Student {
         this.code = cursor.getString(1);
         this.name = cursor.getString(2);
         this._class = cursor.getString(3);
-        this.id_department = cursor.getInt(4);
+        this.department_id = cursor.getInt(4);
         this.branch_group = cursor.getString(5);
         this.branch = cursor.getString(6);
         this.status = cursor.getString(7);
@@ -181,11 +181,11 @@ public class Student {
     }
 
     public int getId_department() {
-        return id_department;
+        return department_id;
     }
 
-    public void setId_department(int id_department) {
-        this.id_department = id_department;
+    public void setId_department(int department_id) {
+        this.department_id = department_id;
     }
 
     public int getCourse() {

@@ -46,8 +46,8 @@ public class StudentAdapter extends ArrayAdapter<StudentAdapter.VStudent> {
     public static class VStudent extends Student {
         private int rank;
 
-        public VStudent(int rank, int id, String code, String name, String _class, int id_department, String branch_group, String branch, String status, String day_admission, String school_year, int course, String education_level, String gender, String type_education, int area, String department, String average_cumulative, int total_term, String created_at, String updated_at) {
-            super(id, code, name, _class, id_department, branch_group, branch, status, day_admission, school_year, course, education_level, gender, type_education, area, department, average_cumulative, total_term, created_at, updated_at);
+        public VStudent(int rank, int id, String code, String name, String _class, int department_id, String branch_group, String branch, String status, String day_admission, String school_year, int course, String education_level, String gender, String type_education, int area, String department, String average_cumulative, int total_term, String created_at, String updated_at) {
+            super(id, code, name, _class, department_id, branch_group, branch, status, day_admission, school_year, course, education_level, gender, type_education, area, department, average_cumulative, total_term, created_at, updated_at);
             this.rank = rank;
         }
 
